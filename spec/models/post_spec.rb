@@ -6,7 +6,9 @@ RSpec.describe Post, type: :model do
 
     it "title should not be blank" do
         subject.title = nil
-        expect(subject).to be_valid
+        subject.comments_counter = 0
+        subject.likes_counter = 0
+        expect(subject).to_not be_valid
     end
 
     it "title should not exceed 250 characters" do
@@ -22,7 +24,9 @@ RSpec.describe Post, type: :model do
         jgjgvgjsxkjnskxksglsliihslsxlihsxysisjxjhgsjxhbsjxvghscxhgsxhsxgchsxusgxugusxysxusuxyyggs
         kukusxgugsxguihgisxyfsysxhgchassxvjsxsjvjsxxsiuisxsjkkxiusxsufusxsuxygyusxyfsutxsxvjsxj
         ygisxxiuhsgxiusxyfsuxsxvsxugksclisscouscgusf8duwd98td7[owdp9wd90ywiwfysisyfikbsciysaascsutasaclsacyuf"
-
+        
+        subject.comments_counter = 0
+        subject.likes_counter = 0
         expect(subject).to_not be_valid  
     end
     
