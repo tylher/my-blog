@@ -5,8 +5,8 @@ class Post < ApplicationRecord
 
   scope :update_post, ->(id, text) { find_by(id:).update(text:) }
 
-  validates :likes_counter, :comments_counter, numericality: {only_integer: true, greater_or_equal_to: 0}
-  validates :title, presence:true, length: {maximum:250}
+  validates :likes_counter, :comments_counter, numericality: { only_integer: true, greater_or_equal_to: 0 }
+  validates :title, presence: true, length: { maximum: 250 }
 
   def update_post_count
     new_count = author.posts.count
