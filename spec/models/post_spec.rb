@@ -22,7 +22,18 @@ RSpec.describe Post, type: :model do
         jgjgvgjsxkjnskxksglsliihslsxlihsxysisjxjhgsjxhbsjxvghscxhgsxhsxgchsxusgxugusxysxusuxyyggs
         kukusxgugsxguihgisxyfsysxhgchassxvjsxsjvjsxxsiuisxsjkkxiusxsufusxsuxygyusxyfsutxsxvjsxj
         ygisxxiuhsgxiusxyfsuxsxvsxugksclisscouscgusf8duwd98td7[owdp9wd90ywiwfysisyfikbsciysaascsutasaclsacyuf"
+
         expect(subject).to_not be_valid  
+    end
+    
+    it "comment_counter should be an integer and greater than or equal to zero" do
+        subject.likes_counter = 0
+       expect(subject).to_not be_valid  
+    end
+
+    it "like_counter should be an integer and greater than or equal to zero" do
+        subject.comments_counter = 0
+        expect(subject).to_not be_valid 
     end
     
 end
