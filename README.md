@@ -1,4 +1,4 @@
-# school-library-app
+# Blog-app
 The Blog app will be a classic example of a blog website. You will create a fully functional website that will show the list of posts and empower readers to interact with them by adding comments and liking posts.
 
 ## Built With
@@ -19,7 +19,6 @@ The Blog app will be a classic example of a blog website. You will create a full
 You need to have a browser and this tools installed:
 
 - Git
-- NodeJS
 - Ruby
 - Rails
 - PostgreSql
