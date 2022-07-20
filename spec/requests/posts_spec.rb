@@ -15,4 +15,13 @@ RSpec.describe 'Posts', type: :request do
       expect(response.body).to include('This is the list of posts of a particular user')
     end
   end
+
+  describe 'GET Posts/show' do
+    it 'render show template' do
+      id = 1
+      get "/users/1/posts/#{id}"
+      expect(response).to render_template(:show)
+      expect(response.body).to include('his is a particular post of a user')
+    end
+  end
 end
