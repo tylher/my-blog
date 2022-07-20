@@ -40,6 +40,8 @@ gem 'jbuilder'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
+gem 'rails-controller-testing'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data'
 
@@ -70,11 +72,11 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
 
 group :development, :test do
+  gem 'capybara'
   gem 'rspec-rails'
 end
