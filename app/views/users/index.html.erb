@@ -2,13 +2,6 @@
 <% @users.each do |user| %>
     <a href="<%= user_path(user)%>" >
     
-       <div>
-            <img src=<%= user.photo %> alt= <%= user.name %> />
-            <div>
-            <h2><%= user.name%></h2>
-            <p> Number of posts: <%= user.posts_counter%>
-            </div>
-            
-       </div>
+        <%= render partial:'shared/user_header', locals:{user: user} %>
     </a>  
 <%end%>
