@@ -3,7 +3,6 @@
 <% @posts.each do |post| %>
    <%= render partial:'shared/post', locals:{post: post} %> 
    <% post.comments.each do |comment|%>
-        <p><%= comment.author.name %>: </p>
-        <span><%= comment.text %></span>
+        <p><%= comment.author.name %>: <%= comment.text %></p>
    <% end %>
 <% end %>
