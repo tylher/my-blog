@@ -1,4 +1,3 @@
 class LoginController < ApplicationController
-  def form
-  end
+  def form; end
 end
