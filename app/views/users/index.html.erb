@@ -1,1 +1,6 @@
 <h1>Here is the list of users</h1>
+<% @users.each do |user| %>
+    <a href="<%= user_path(user)%>" >
+        <%= render partial:'shared/user_header', locals:{user: user} %>
+    </a>  
+<%end%>
