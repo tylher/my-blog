@@ -23,7 +23,7 @@ class PostsController < ApplicationController
           redirect_to user_posts_path(@current_user)
         else
           flash[:error] = 'Something went wrong'
-          render :new, locals: {post: @post}
+          render :new, locals: { post: @post }
         end
       end
     end
