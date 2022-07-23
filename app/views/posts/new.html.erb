@@ -1,0 +1,17 @@
+<h1> New post</h1>
+<%= form_with model: @post, url: user_posts_path, method: :post, local: true, scope: :post do |f| %>
+    <div><%= f.label :title, 'Title: '%>
+    <%= f.text_field :title%>
+    </div>
+    <div>
+    <%= f.label :text, 'Comment text: '%>
+    <%= f.text_area :text %>
+    </div>
+    <div>
+    <%= f.hidden_field :comments_counter, value: 0 %>
+    </div>
+    <div>
+        <%= f.hidden_field :likes_counter, value: 0 %>
+    </div>
+    <%= f.submit 'create post'%>
+<% end %>
