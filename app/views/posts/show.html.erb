@@ -5,5 +5,8 @@
         <p>comments: <%= @post.comments_counter%></p>
         <p>likes: <%= @post.likes_counter%></p>
     </div>
+    <%= link_to new_user_post_comment_path(post_id: params[:id]) do%>
+            <button>Add comments</button>
+         <% end %>
 </div>
 

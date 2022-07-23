@@ -5,4 +5,8 @@
    <% post.comments.each do |comment|%>
         <p><%= comment.author.name %>: <%= comment.text %></p>
    <% end %>
+   
 <% end %>
+<%= link_to new_user_post_path do%>
+        <button>Create new post</button>
+    <% end %>
