@@ -1,0 +1,17 @@
+<h1>Here is the profile of a given user</h1>
+
+ <%= render partial:'shared/user_header', locals:{user: @user} %>
+ <section>
+    <h2>Bio</h2>
+    <p><%= @user.bio %></p>
+ </section>
+ <section>
+    <% @user.posts.each do |post| %>
+        <%= link_to user_post_path(@user,post) do %>
+            <%= render partial:'shared/post', locals:{post: post} %>
+        <% end %>
+    <% end %>
+    <%= link_to user_posts_path(@user) do%>
+        <button>See all posts</button>
+    <% end %>
+ </section>

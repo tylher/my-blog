@@ -1,0 +1,12 @@
+<h1>This is the list of posts of a particular user</h1>
+<%= render partial:'shared/user_header', locals:{user: User.find(params[:user_id])} %>
+<% @posts.each do |post| %>
+   <%= render partial:'shared/post', locals:{post: post} %> 
+   <% post.comments.each do |comment|%>
+        <p><%= comment.author.name %>: <%= comment.text %></p>
+   <% end %>
+   
+<% end %>
+<%= link_to new_user_post_path do%>
+        <button>Create new post</button>
+    <% end %>
