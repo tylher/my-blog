@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -15,14 +17,13 @@ RSpec.describe User, type: :model do
   end
 
   context 'model methods tests' do
-    
     it 'method should get the most recent post of author' do
       user1 = User.new(name: 'taiwo', posts_counter: 0)
-    user1.save
-    Post.create(author: user1, title: 'hello', likes_counter: 0, comments_counter: 0)
-    Post.create(author: user1, title: 'what you doing', likes_counter: 0, comments_counter: 0)
-    Post.create(author: user1, title: 'amazing post', likes_counter: 0, comments_counter: 0)
-    Post.create(author: user1, title: 'Hahahaha', likes_counter: 0, comments_counter: 0)
+      user1.save
+      Post.create(author: user1, title: 'hello', likes_counter: 0, comments_counter: 0)
+      Post.create(author: user1, title: 'what you doing', likes_counter: 0, comments_counter: 0)
+      Post.create(author: user1, title: 'amazing post', likes_counter: 0, comments_counter: 0)
+      Post.create(author: user1, title: 'Hahahaha', likes_counter: 0, comments_counter: 0)
       recent_posts_arr = user1.most_recent_posts
       recent_posts = recent_posts_arr.map(&:title)
       expect(recent_posts).to eql ['Hahahaha', 'amazing post', 'what you doing']
