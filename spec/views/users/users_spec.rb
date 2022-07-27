@@ -2,14 +2,14 @@
 
 RSpec.describe 'GET/ users', type: :feature do
   before(:all) do
-    @user1 = User.create(name: 'Tom',photo: 'https://rb.gy/lo3mjf', bio: 'Teacher from Mexico.', posts_counter: 0)
-    @user2 = User.create(name: 'Lilly',photo: 'https://rb.gy/iznb4r', bio: 'Teacher from Poland.', posts_counter: 0)
-    @post1 = Post.create(author: @user1,title:'Post 1',text:'Post 1 text',comments_counter: 0,likes_counter:0)
-    @post2 = Post.create(author: @user1,title:'Post 2',text:'Post 2 text',comments_counter: 0,likes_counter:0)
-    @post3 = Post.create(author: @user1,title:'Post 3',text:'Post 3 text',comments_counter: 0,likes_counter:0)
-    @comments1 = Comment.create(author: @user2,post: @post1,text: 'Comment 1 text')
-    @comments2 = Comment.create(author: @user2,post: @post2,text: 'Comment 2 text')
-    @comments3 = Comment.create(author: @user2,post: @post3,text: 'Comment 3 text')
+    @user1 = User.first
+    @user2 = User.second
+    @post1 = Post.first
+    @post2 = Post.second
+    @post3 = Post.find(3)
+    @comments1 = Comment.first
+    @comments2 = Comment.second
+    @comments3 = Comment.find(3)
 end
 
   describe "Users index page '/users'" do
@@ -143,7 +143,5 @@ end
             sleep(2)
             expect(page).to have_content('Paggination')
         end
-
-
     end
 end
