@@ -17,6 +17,7 @@ RSpec.describe User, type: :model do
   end
 
   context 'model methods tests' do
+
     it 'method should get the most recent post of author' do
       user1 = User.new(name: 'taiwo', posts_counter: 0)
       user1.save

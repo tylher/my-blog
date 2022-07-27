@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :likes, only: %i[new create]
     end
   end
-  root 'users#index'
+  root "users#index"
   # Defines the root path route ("/")
   # root "articles#index"
 end
