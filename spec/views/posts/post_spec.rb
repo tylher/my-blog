@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 RSpec.describe 'GET/ post', type: :feature do
   before(:all) do
     @user1 = User.create(name: 'Tom', photo: 'https://rb.gy/lo3mjf', bio: 'Teacher from Mexico.', posts_counter: 0)

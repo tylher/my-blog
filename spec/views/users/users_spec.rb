@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 RSpec.describe 'GET/ users', type: :feature do
   before(:all) do
     @user1 = User.first
