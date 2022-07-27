@@ -1,57 +1,149 @@
-RSpec.describe "GET/ users", type: :feature do
-    before(:all) do
-         @user=User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',posts_counter: 0)
-         @user1=User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.', posts_counter: 0)
+# frozen_string_literal: true
 
-         @post1=Post.create(title:'power above all', text:'we are all pencils in the hand of the creator',author:@user )
-         @post2=Post.create(title:'Buisness', text:'Never being lazy',author:@user )
-         @post2.update_post_count
-    end
-    describe "user index" do
-        it "description" do
+RSpec.describe 'GET/ users', type: :feature do
+  before(:all) do
+    @user1 = User.create(name: 'Tom',photo: 'https://rb.gy/lo3mjf', bio: 'Teacher from Mexico.', posts_counter: 0)
+    @user2 = User.create(name: 'Lilly',photo: 'https://rb.gy/iznb4r', bio: 'Teacher from Poland.', posts_counter: 0)
+    @post1 = Post.create(author: @user1,title:'Post 1',text:'Post 1 text',comments_counter: 0,likes_counter:0)
+    @post2 = Post.create(author: @user1,title:'Post 2',text:'Post 2 text',comments_counter: 0,likes_counter:0)
+    @post3 = Post.create(author: @user1,title:'Post 3',text:'Post 3 text',comments_counter: 0,likes_counter:0)
+    @comments1 = Comment.create(author: @user2,post: @post1,text: 'Comment 1 text')
+    @comments2 = Comment.create(author: @user2,post: @post2,text: 'Comment 2 text')
+    @comments3 = Comment.create(author: @user2,post: @post3,text: 'Comment 3 text')
+end
+
+  describe "Users index page '/users'" do
+    it 'Should show all users username' do
       visit '/users'
-      expect(page).to have_content(@user.name)
-      expect(page).to have_content(@user1.name)
-   end
-   it "description" do
-     visit '/' 
-     expect(page).to have_css('img[alt=Tom]')
-     expect(page).to have_css('img[alt=Lilly]')
-
-   end
-   it "description" do
-    visit '/'
-    expect(page).to have_css('p', text:'Number of posts: 2') 
-    expect(page).to have_css('p', text:'Number of posts: 0') 
-   end
-
-   it "description" do
-    visit '/'
-    click_link @user.name
-    expect(page).to have_content(@user.name)
-    expect(page).to have_content(@user.bio)
-   end
+      sleep(2)
+      expect(page).to have_content('Tom')
+      expect(page).to have_content('Lilly')
     end
 
-    describe "show page" do
-        it "description" do
-            visit "/users/#{@user.id}"
-        expect(page).to have_css("img[src='https://unsplash.com/photos/F_-0BxGuVvo']")
-        end
-        
-        it "description" do
-           visit "/users/#{@user.id}" 
-           expect(page).to have_content(@user.name)
-        end
-        it "shows user's bio" do
-           visit "/users/#{@user.id}"  
-           expect(page).to have_content(@user.bio)
-        end
-        it "Shows number of posts" do
-           visit "/users/#{@user.id}" 
-           expect(page).to have_content('Number of posts: 2')
-        end
-        
+    it 'Should show profile image of each user' do
+      visit '/users'
+      sleep(2)
+      expect(page).to have_css("img[src*='https://rb.gy/lo3mjf']")
+      expect(page).to have_css("img[src*='https://rb.gy/iznb4r']")
     end
-    
+
+    it 'Should show number of posts each user has wrote' do
+      visit '/users'
+      sleep(2)
+      expect(page).to have_content('Number of posts: 0')
+      expect(page).to have_content('Number of posts: 0')
+    end
+
+    it 'Should redirect to users profile page when user clicks on username' do
+      visit '/users'
+      sleep(2)
+      click_link('Tom')
+      expect(page.current_path).to eq('/users/1')
+    end
+  end
+
+  describe "User show page 'users/user_id'"
+    it 'should show user image' do
+        visit '/users/1'
+        sleep(2)
+        expect(page).to have_css("img[src*='https://rb.gy/lo3mjf']")
+    end
+
+    it 'should show user name' do
+        visit '/users/1'
+        sleep(2)
+        expect(page).to have_content('Tom')
+    end
+
+    it 'should show user bio' do
+        visit '/users/1'
+        sleep(2)
+        expect(page).to have_content('Teacher from Mexico.')
+    end
+
+    it 'should show user number of posts' do
+        visit '/users/1'
+        sleep(2)
+        expect(page).to have_content('Number of posts: 3')
+    end
+
+    it 'should show users most recent three post' do
+        visit '/users/1'
+        sleep(2)
+        expect(page).to have_content('Post 1')
+        expect(page).to have_content('Post 2')
+        expect(page).to have_content('Post 3')
+    end
+
+    it 'should show a see all posts button' do
+        visit '/users/1'
+        sleep(2)
+        expect(page).to have_content('See all posts')
+    end
+
+    it 'should redirect to all posts page when user clicks on see all posts button' do
+        visit '/users/1'
+        sleep(2)
+        click_link('See all posts')
+        expect(page.current_path).to eq('/users/1/posts')
+    end
+
+    it 'should redirect to posts show page when user clicks on post title' do
+        visit '/users/1'
+        sleep(2)
+        click_link('Post 1')
+        expect(page.current_path).to eq('/users/1/posts/1')
+    end
+
+    describe "User post index page '/users/user_id/posts'" do
+        it 'should show profile image of user' do
+            visit '/users/1/posts'
+            sleep(2)
+            expect(page).to have_css("img[src*='https://rb.gy/lo3mjf']")
+        end
+
+        it 'should show user name' do
+            visit '/users/1/posts'
+            sleep(2)
+            expect(page).to have_content('Tom')
+        end
+
+        it 'should show the number of posts the user has wrote' do
+            visit '/users/1/posts'
+            sleep(2)
+            expect(page).to have_content('Number of posts: 3')
+        end
+
+        it 'should show the title of each post' do
+            visit '/users/1/posts'
+            sleep(2)
+            expect(page).to have_content('Post 1')
+            expect(page).to have_content('Post 2')
+            expect(page).to have_content('Post 3')
+        end
+
+        it 'should show the text of each post' do
+            visit '/users/1/posts'
+            sleep(2)
+            expect(page).to have_content('Post 1 text')
+            expect(page).to have_content('Post 2 text')
+            expect(page).to have_content('Post 3 text')
+        end
+
+        it 'should show the first comment of each post' do
+            visit '/users/1/posts'
+            sleep(2)
+            expect(page).to have_content('Comment 1 text')
+            expect(page).to have_content('Comment 2 text')
+            expect(page).to have_content('Comment 3 text')
+        end
+
+        it 'should show a paggination button' do
+            visit '/users/1/posts'
+            sleep(2)
+            expect(page).to have_content('Paggination')
+        end
+
+
+    end
 end
