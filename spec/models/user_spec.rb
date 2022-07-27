@@ -15,6 +15,11 @@ RSpec.describe User, type: :model do
   end
 
   context 'model methods tests' do
+<<<<<<< HEAD
+=======
+    Post.destroy_all
+    User.destroy_all
+>>>>>>> 19f002a9f651fb5f5eb91dfad5cbf258953c860e
     user1 = User.new(name: 'taiwo', posts_counter: 0)
     user1.save
     Post.create(author: user1, title: 'hello', likes_counter: 0, comments_counter: 0)
