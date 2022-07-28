@@ -82,6 +82,8 @@ end
 
 gem 'bullet'
 
+gem 'devise'
+
 # group :development, :test do
 #   gem 'capybara'
 #   gem 'rspec-rails'
