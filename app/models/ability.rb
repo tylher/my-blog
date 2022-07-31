@@ -11,6 +11,17 @@ class Ability
     #   return unless user.admin?
     #   can :manage, :all
     #
+
+    if user.if :admin
+      can :manage,:all
+    else
+      can :read, Post
+      can :read, Comment
+      can :manage,Post,author:user
+      can :manage,Comment,author:user
+    end
+
+
     # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
