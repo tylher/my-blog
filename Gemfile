@@ -59,6 +59,7 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'devise'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
@@ -82,7 +83,11 @@ end
 
 gem 'bullet'
 
-gem 'devise'
+gem 'cancancan'
+
+gem 'jwt'
+
+gem 'bcrypt'
 
 # group :development, :test do
 #   gem 'capybara'

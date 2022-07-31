@@ -6,4 +6,8 @@ class Comment < ApplicationRecord
     new_count = post.comments.count
     post.update(comments_counter: new_count)
   end
+
+  after_create :update_comment_count
+  after_destroy :update_comment_count
+
 end
