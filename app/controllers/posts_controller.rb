@@ -29,6 +29,21 @@ class PostsController < ApplicationController
     end
   end
 
+ def destroy
+  @post = Post.find(params[:id])
+  respond_to do |format|
+    format.html do
+      if @post.destroy
+        flash[:success] = 'Object successfully deleted'
+        redirect_to user_posts_path(current_user)
+      else
+        flash[:error] = 'Something went wrong'
+          render :show, locals: { post: @post }
+    end
+    end
+  end
+ end
+
   private
 
   def post_params

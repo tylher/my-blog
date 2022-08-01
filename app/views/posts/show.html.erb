@@ -7,12 +7,19 @@
     </div>
     <% @post.comments.each do |comment|%>
         <p><%= comment.author.name %>: <%= comment.text %></p>
+         <% if can? :destroy, comment %>
+        <%= button_to 'Delete comment',user_post_comment_path(id: comment.id,post_id: @post.id), method: :delete%>
+        <% end %> 
    <% end %>
     <%= link_to new_user_post_comment_path(post_id: params[:id]) do%>
-            <button>Add comments</button>
+            <button>Add comments</button> 
          <% end %>
     <%= link_to new_user_post_like_path(post_id: params[:id]) do%>
             <button>Like</button>
+         <% end %>
+
+<% if can? :destroy, @post%>
+         <%= button_to 'Delete post', user_post_path, method: :delete%>
          <% end %>
 </div>
 

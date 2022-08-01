@@ -12,7 +12,7 @@ class Ability
     #   can :manage, :all
     #
 
-    if user.if :admin
+    if user.is? :admin
       can :manage,:all
     else
       can :read, Post

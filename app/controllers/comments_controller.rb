@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+def index
+end
+
   def new
     @comment = Comment.new
     @current_user = current_user
@@ -23,6 +26,23 @@ class CommentsController < ApplicationController
       end
     end
   end
+
+   def destroy
+  @comment = Comment.find(params[:id])
+  post = @comment.post
+  author = @comment.author
+  respond_to do |format|
+    format.html do
+      if @comment.destroy
+        flash[:success] = 'Object successfully deleted'
+        redirect_to user_post_path(post_id: post.id)
+      else
+        flash[:error] = 'Something went wrong'
+          render :show, locals: { post: @post }
+    end
+    end
+  end
+ end
 
   private
 
