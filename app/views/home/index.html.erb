@@ -1,0 +1,7 @@
+<h2 class="max-w-[70%]  h-[30%]">  <%= "blog homepage " %> </h2>
+
+<div class="max-w-[70%]">
+    <% @posts.each do |post| %>
+        <h2><%= post.title %></h2>
+    <% end %>
+</div>

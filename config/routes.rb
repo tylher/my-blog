@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
   # get '/login', to: 'login#form'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :users, only: %i[index show] do
@@ -10,7 +9,7 @@ Rails.application.routes.draw do
       resources :likes, only: %i[new create]
     end
   end
-  root "users#index"
+  root "home#index"
   # Defines the root path route ("/")
   # root "articles#index"
 end

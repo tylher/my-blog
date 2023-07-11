@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(author_id: params[:user_id]).includes(:comments)
+    @posts = Post.all
   end
 
   def new
@@ -19,10 +19,10 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html do
         if @post.save
-          flash[:success] = 'Object successfully created'
+          flash[:success] = "Object successfully created"
           redirect_to user_posts_path(@current_user)
         else
-          flash[:error] = 'Something went wrong'
+          flash[:error] = "Something went wrong"
           render :new, locals: { post: @post }
         end
       end

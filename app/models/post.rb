@@ -23,7 +23,7 @@ class Post < ApplicationRecord
     comments.order(created_at: :desc).first(5)
   end
 
-  after_create :update_post_count
+  # after_create :update_post_count
 
   scope :update_post_count, -> { author.posts_counter += 1 }
 end
