@@ -1,4 +1,12 @@
-<h2 class="max-w-[70%]  h-[30%]">  <%= "blog homepage " %> </h2>
+<div class="w-full flex flex-col relative items-center justify-center ">
+    <%= image_tag "pexels-pixabay-265667", class: "w-[60%] blur-[2px]" %>
+    <div class= "bg-[#00000099] w-[60%] h-full absolute"></div>
+    <div class="absolute text-white text-center w-[60%] px-[50px] flex items-center flex-col gap-2">
+        <h1 class="text-5xl font-bold">Unlocking Creativity and Connecting Minds</h1>
+        <p class= "text-lg">Introducing BlogHub - Your All-In-One Blogging Destination for Inspiring Ideas and Thoughtful Discussions</p>
+        <%= link_to "Get Started", users_path, class: "bg-blue-500 p-3 rounded-full" %>
+    </div>
+</div>
 
 <div class="max-w-[70%]">
     <% @posts.each do |post| %>
