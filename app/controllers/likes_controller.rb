@@ -12,12 +12,11 @@ class LikesController < ApplicationController
       format.html do
         if @like.save
           @like.update_like_count
-          flash[:success] = ' like created successfully'
+          flash[:success] = " like created successfully"
           @author = User.find(params[:user_id])
           redirect_to user_post_path(@author, @post)
         else
-          flash[:error] = 'Something went wrong'
-          render :new
+          flash[:error] = "Something went wrong"
         end
       end
     end

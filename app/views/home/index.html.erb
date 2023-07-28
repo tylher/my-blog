@@ -1,15 +1,31 @@
+
+<div class="flex flex-col  ">
+<div class="w-[70%] px-12">
+<%= button_to "Start Writing" %>
+
 <div class="w-full flex flex-col relative items-center justify-center ">
-    <%= image_tag "pexels-pixabay-265667", class: "w-[60%] blur-[2px]" %>
-    <div class= "bg-[#00000099] w-[60%] h-full absolute"></div>
-    <div class="absolute text-white text-center w-[60%] px-[50px] flex items-center flex-col gap-2">
+    <%= image_tag "pexels-pixabay-265667", class: "w-full blur-[2px]" %>
+    <div class= "bg-[#00000099] w-full h-full absolute"></div>
+    <div class="absolute text-white text-center  px-[50px] flex items-center flex-col gap-2">
         <h1 class="text-5xl font-bold">Unlocking Creativity and Connecting Minds</h1>
         <p class= "text-lg">Introducing BlogHub - Your All-In-One Blogging Destination for Inspiring Ideas and Thoughtful Discussions</p>
         <%= link_to "Get Started", users_path, class: "bg-blue-500 p-3 rounded-full" %>
     </div>
 </div>
 
-<div class="max-w-[70%]">
+<div class=" grid grid-cols-3 gap-5 mt-10">
     <% @posts.each do |post| %>
-        <h2><%= post.title %></h2>
+        <div class="flex flex-col gap-2">
+            <div class="w-full h-36 bg-gray-400 rounded-md"></div>
+            <h2 class="font-bold text-xl"><%= post.title.split.map { |word| word.capitalize() }.join(" ") %></h2>
+            <p class="break-words text-sm"><%= post.text %></p>
+        </div>
+       
     <% end %>
+</div>
+
+</div>
+    
+
+
 </div>
