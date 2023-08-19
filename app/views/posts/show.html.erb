@@ -1,13 +1,27 @@
-<div>
-    <h2><%= @post.title %> by <%= @post.author.name %></h2>
-    <p><%= @post.text %></p>
+<div class="min-h-[89vh] px-[20%] flex flex-col gap-6">
+    <h2 class="text-5xl font-extrabold"><%= @post.title %> </h2> 
+
     <div>
-        <p>comments: <%= @post.comments_counter %></p>
-        <p>likes: <%= @post.likes_counter %></p>
+        <div class="h-[70vh] w-[100%] bg-zinc-400 ">water</div>
+        <div class="flex gap-5 text-sm font-bold">
+            <p>comments: <%= @post.comments_counter %></p>
+            <p>likes: <%= @post.likes_counter %></p>
+        </div>
     </div>
+
+    <p class=""><%= @post.text %></p>
     <% @post.comments.each do |comment| %>
         <p><%= comment.author.name %>: <%= comment.text %></p>
    <% end %>
+
+
+   <div id="new_comment" class="flex flex-col gap-3">
+        <h2 class="text-2xl font-semibold"> Comment On This Post</h2>
+        <%= form_with model: @comment, path: user_post_comments_path(1,post_id: @post.id), method: :post, local: true do |f| %>
+               <%= f.text_area :text %>
+        <% end %>
+   </div>
+   
     
 </div>
 
