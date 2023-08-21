@@ -13,13 +13,12 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @current_user = current_user
-    @post.author_id = @current_user.id
+    @post.author_id = 1
     respond_to do |format|
       format.html do
         if @post.save
-          flash[:success] = "Object successfully created"
-          redirect_to user_posts_path(@current_user)
+          flash[:success] = "Post successfully created"
+          redirect_to posts_path
         else
           flash[:error] = "Something went wrong"
           render :new, locals: { post: @post }
@@ -31,6 +30,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :text, :comments_counter, :likes_counter)
+    params.require(:post).permit(:title, :text, :featured_image)
   end
 end

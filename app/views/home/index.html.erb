@@ -1,7 +1,7 @@
 
 <div class="flex flex-col  ">
 <div class="w-[75%] px-12 flex flex-col items-end">
-<%= button_to "Start Writing", new_user_post_path(1), class: "bg-blue-300 hover:bg-blue-500 font-semibold text-white py-2 px-5 mb-4 rounded-md", method: :get %>
+<%= button_to "Start Writing", "posts/new", class: "bg-blue-300 hover:bg-blue-500 font-semibold text-white py-2 px-5 mb-4 rounded-md", method: :get %>
 
 <div class="w-full flex flex-col relative items-center justify-center ">
     <%= image_tag "pexels-pixabay-265667", class: "w-full blur-[2px]" %>
@@ -9,7 +9,7 @@
     <div class="absolute text-white text-center  px-[50px] flex items-center flex-col gap-2">
         <h1 class="text-5xl font-bold">Unlocking Creativity and Connecting Minds</h1>
         <p class= "text-lg">Introducing BlogHub - Your All-In-One Blogging Destination for Inspiring Ideas and Thoughtful Discussions</p>
-        <%= link_to "Get Started", users_path, class: "bg-blue-500 p-3 rounded-full" %>
+        <%= link_to "Get Started", new_post_path, class: "bg-blue-500 p-3 rounded-full" %>
     </div>
 </div>
 
@@ -18,8 +18,15 @@
     <% @posts.each do |post| %>
     <%= link_to post_path(post.title), class: "relative" do %>
         <div class="flex flex-col gap-2 relative mb-12">
+            <% if post.featured_image.attached? %>
+            <div class="w-full h-36 rounded-md">
+                <img src="<%= url_for(post.featured_image) %>" alt="cover image" class="w-full h-full rounded-md">
+            </div>
+            
+            <% else %>
             <div class="w-full h-36 bg-gray-400 rounded-md"></div>
-            <h2 class="font-extrabold text-xl"><%= post.title.split.map { |word| word.capitalize() }.join(" ") %></h2>
+            <% end %>
+            <h2 class="font-extrabold text-xl"><%= post.capitalize_title %></h2>
             <p class="break-words font-medium text-sm text-gray-600 "><%= post.text.truncate(60, seperator: " ") %></p>  
         </div >
         <div class="absolute bottom-0 flex justify-between w-full" >

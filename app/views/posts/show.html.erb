@@ -1,8 +1,10 @@
 <div class=" px-[20%] flex flex-col gap-6 py-10">
-    <h2 class="text-5xl font-extrabold"><%= @post.title %> </h2> 
+    <h2 class="text-5xl font-extrabold"><%= @post.capitalize_title %> </h2> 
 
     <div>
-        <div class="h-[70vh] w-[100%] bg-zinc-400 ">water</div>
+        <div class="p-auto w-[100%] ">
+            <img src="<%= url_for(@post.featured_image)%>">
+        </div>
         <div class="flex gap-5 text-sm font-bold">
             <p>comments: <%= @post.comments_counter %></p>
             <p>likes: <%= @post.likes_counter %></p>
@@ -21,7 +23,7 @@
 
    <div id="new_comment" class="flex flex-col gap-3 ">
         <h2 class="text-2xl font-semibold"> Comment On This Post</h2>
-        <%= form_with model: @comment, path: user_post_comments_path(1,post_id: @post.id), method: :post, local: true do |f| %>
+        <%= form_with model: @comment, path: comments_path, method: :post, local: true do |f| %>
                <%= f.text_area :text, class:"rounded-md h-[150px] w-3/5 bg-gray-200 border-none focus:bg-white font-medium px-4", placeholder: "Add a comment here" %>
         <% end %>
    </div>

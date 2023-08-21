@@ -5,6 +5,8 @@ class Post < ApplicationRecord
 
   belongs_to :author, class_name: "User", foreign_key: "author_id"
 
+  has_one_attached :featured_image
+
   # scope :update_post, ->(id, text) { find_by(id:).update(text:) }
 
   validates :likes_counter, :comments_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
@@ -19,6 +21,10 @@ class Post < ApplicationRecord
 
   def most_recent_comments
     comments.order(created_at: :desc).first(5)
+  end
+
+  def capitalize_title
+    title.split.map { |word| word.capitalize() }.join(" ")
   end
 
   after_create :update_post_count
