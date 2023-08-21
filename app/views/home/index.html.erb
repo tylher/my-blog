@@ -1,6 +1,6 @@
 
 <div class="flex flex-col  ">
-<div class="w-[70%] px-12 flex flex-col items-end">
+<div class="w-[75%] px-12 flex flex-col items-end">
 <%= button_to "Start Writing", new_user_post_path(1), class: "bg-blue-300 hover:bg-blue-500 font-semibold text-white py-2 px-5 mb-4 rounded-md", method: :get %>
 
 <div class="w-full flex flex-col relative items-center justify-center ">
@@ -13,7 +13,8 @@
     </div>
 </div>
 
-<div class=" grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 my-10 bg-white p-7 ">
+<div class=" bg-white p-7 my-10 flex flex-col items-center gap-5">
+    <div class=" grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-7  ">
     <% @posts.each do |post| %>
     <%= link_to post_path(post.title), class: "relative" do %>
         <div class="flex flex-col gap-2 relative mb-12">
@@ -31,6 +32,9 @@
        <% end %>
     <% end %>
 </div>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+</div>
+
 
 </div>
     
