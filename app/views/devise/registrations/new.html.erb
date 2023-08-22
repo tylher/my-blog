@@ -10,6 +10,16 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded-md" %>
   </div>
 
+  <div class="flex flex-col w-full ">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "email", class: "rounded-md" %>
+  </div>
+
+  <div class="flex flex-col w-full ">
+    <%= f.label :bio %>
+    <%= f.text_area :bio, autofocus: true, autocomplete: "email", class: "rounded-md h-[200px]" %>
+  </div>
+
   <div class="flex flex-col w-full">
     <%= f.label :password %>
     <% if @minimum_password_length %>
