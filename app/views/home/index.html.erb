@@ -31,9 +31,15 @@
         </div >
         <div class="absolute bottom-0 flex justify-between w-full" >
         <%= button_to "read more", post_path(post.title), method: :get, class: "font-bold text-xs " %>
-        <div class="flex gap-3">
-            <%= button_to "#{post.likes_counter} likes", post_path(post.title), class: "font-bold text-xs " %>
-            <%= button_to "#{post.comments_counter} comments", post_path(post.title), class: "font-bold text-xs " %>
+        <div class="flex items-center gap-3">
+           
+            
+            <%= button_to post_path(post.title), method: :post, class: "flex items-center gap-1 " do %>
+                 <p class="text-xs font-bold"><%= post.likes_counter %> </p> <i class="fa-regular fa-heart fa-xs"></i>           
+            <% end %>
+            <%= button_to post_path(post.title), method: :post, class: "flex items-center gap-1 " do %>
+                 <p class="text-xs font-bold"><%= post.likes_counter %> </p> <i class="fa-regular fa-comment fa-xs"></i></i>           
+            <% end %>
         </div>
         </div>
        <% end %>
@@ -41,7 +47,7 @@
 </div>
 <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
 </div>
-
+ 
 
 </div>
     
