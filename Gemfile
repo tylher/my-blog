@@ -83,8 +83,6 @@ end
 
 gem "bullet"
 
-# gem 'devise'
-
 # group :development, :test do
 #   gem 'capybara'
 #   gem 'rspec-rails'
@@ -92,3 +90,5 @@ gem "bullet"
 
 gem "tailwindcss-rails", "~> 2.0"
 gem "pagy"
+
+gem "devise", "~> 4.9"
