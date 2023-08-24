@@ -1,14 +1,16 @@
 <div class=" w-full flex justify-between items-center px-11 py-5">
-    <div class="flex">
-        <h2>BLOG</h2>
-        <P>HUB</P>
-    </div>
+    <%= link_to root_path do %>
+        <div class="flex">
+            <h2>BLOG</h2>
+            <P>HUB</P>
+        </div>
+    <% end %>
     <% if not user_signed_in? %>
     <nav >
         <%= link_to "Login", new_user_session_path, class: "border-[2px] border-blue-300 px-4 py-1 rounded-full" %>
         <%= link_to "Sign up", new_user_registration_path, class: "border-[2px] border-blue-300 px-4 py-1 rounded-full" %>
     </nav>
     <% else %>
-    <%= link_to "Logout", destroy_user_session_path, class: "border-[2px] border-blue-300 px-4 py-1 rounded-full", method: :delete %>
+    <%= button_to "Logout", destroy_user_session_path, class: "border-[2px] border-blue-300 px-4 py-1 rounded-full", method: :delete %>
     <% end %>
 </div>
