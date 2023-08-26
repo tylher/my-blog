@@ -1,13 +1,9 @@
 <div class=" px-[20%] flex flex-col gap-6 py-10">
     <h2 class="text-5xl font-extrabold"><%= @post.capitalize_title %> </h2> 
 
-    <div class=""w-full>
+    <div>
         <div class="p-auto w-[100%] ">
-        <% if @post.featured_image.attached? %>
             <img src="<%= url_for(@post.featured_image)%>">
-        <% else %>
-            <div class="bg-slate-500 h-[300px] w-full"></div>
-        <% end %>
         </div>
         <div class="flex gap-5 text-sm font-bold">
             <p>comments: <%= @post.comments_counter %></p>

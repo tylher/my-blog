@@ -16,23 +16,20 @@
 <div class=" bg-white p-7 my-10 flex flex-col items-center gap-5">
     <div class=" grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-7  ">
     <% @posts.each do |post| %>
-    <%= link_to post_path(post.title), class: "relative hover:shadow-lg hover:rounded-b-md " do %>
-        <div class="flex flex-col gap-2 relative mb-12 ">
+    <%= link_to post_path(post.title), class: "relative" do %>
+        <div class="flex flex-col gap-2 relative mb-12">
             <% if post.featured_image.attached? %>
-            <div class="w-full h-36 rounded-md hover:rounded-s-md hover:rounded-b-none">
-                <img src="<%= url_for(post.featured_image) %>" alt="cover image" class="w-full h-full rounded-md hover:rounded-s-md hover:rounded-b-none">
+            <div class="w-full h-36 rounded-md">
+                <img src="<%= url_for(post.featured_image) %>" alt="cover image" class="w-full h-full rounded-md">
             </div>
             
             <% else %>
-            <div class="w-full h-36 bg-gray-400 rounded-md hover:rounded-t-md hover:rounded-b-none"></div>
+            <div class="w-full h-36 bg-gray-400 rounded-md"></div>
             <% end %>
-            <div class="px-2 py-1">
-                 <h2 class="font-extrabold text-xl"><%= post.capitalize_title %></h2>
-            <p class="break-words font-medium text-sm text-gray-600 "><%= post.text.truncate(60, seperator: " ") %></p> 
-            </div>
-            
+            <h2 class="font-extrabold text-xl"><%= post.capitalize_title %></h2>
+            <p class="break-words font-medium text-sm text-gray-600 "><%= post.text.truncate(60, seperator: " ") %></p>  
         </div >
-        <div class="absolute bottom-0 flex justify-between w-full px-2" >
+        <div class="absolute bottom-0 flex justify-between w-full" >
         <%= button_to "read more", post_path(post.title), method: :get, class: "font-bold text-xs " %>
         <div class="flex items-center gap-3">
            
@@ -40,7 +37,7 @@
             <%= button_to post_path(post.title), method: :post, class: "flex items-center gap-1 " do %>
                  <p class="text-xs font-bold"><%= post.likes_counter %> </p> <i class="fa-regular fa-heart fa-xs"></i>           
             <% end %>
-            <%= button_to post_path(post.title), method: :get, class: "flex items-center gap-1 " do %>
+            <%= button_to post_path(post.title), method: :post, class: "flex items-center gap-1 " do %>
                  <p class="text-xs font-bold"><%= post.likes_counter %> </p> <i class="fa-regular fa-comment fa-xs"></i></i>           
             <% end %>
         </div>
