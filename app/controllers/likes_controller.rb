@@ -1,22 +1,16 @@
 class LikesController < ApplicationController
-  def new
-    @likes = Like.new
-  end
+  include ActionView::RecordIdentifier
+  respond_to :turbo_stream
 
   def create
     @like = Like.new
     @like.author_id = current_user.id
     @post = Post.find(params[:post_id])
     @like.post_id = params[:post_id]
-    respond_to do |format|
-      format.html do
-        if @like.save
-          @like.update_like_count
-          flash[:success] = " like created successfully"
-          @author = User.find(params[:user_id])
-          redirect_to user_post_path(@author, @post)
-        else
-          flash[:error] = "Something went wrong"
+    if @like.save
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(dom_id(@post, :likes), partial: "posts/likes", locals: { post: @post })
         end
       end
     end

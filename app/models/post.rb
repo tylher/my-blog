@@ -7,8 +7,6 @@ class Post < ApplicationRecord
 
   has_one_attached :featured_image
 
-  # scope :update_post, ->(id, text) { find_by(id:).update(text:) }
-
   validates :likes_counter, :comments_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   validates :title, presence: true, length: { maximum: 250 }

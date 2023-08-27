@@ -16,7 +16,7 @@
 <div class=" bg-white p-7 my-10 flex flex-col items-center gap-5">
     <div class=" grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-7  ">
     <% @posts.each do |post| %>
-    <%= link_to post_path(post.title), class: "relative" do %>
+    <div class="relative">
         <div class="flex flex-col gap-2 relative mb-12">
             <% if post.featured_image.attached? %>
             <div class="w-full h-36 rounded-md">
@@ -33,16 +33,15 @@
         <%= button_to "read more", post_path(post.title), method: :get, class: "font-bold text-xs " %>
         <div class="flex items-center gap-3">
            
+           <%= render partial: "posts/likes", locals: { post: post } %>
             
-            <%= button_to post_path(post.title), method: :post, class: "flex items-center gap-1 " do %>
-                 <p class="text-xs font-bold"><%= post.likes_counter %> </p> <i class="fa-regular fa-heart fa-xs"></i>           
-            <% end %>
+           
             <%= button_to post_path(post.title), method: :post, class: "flex items-center gap-1 " do %>
                  <p class="text-xs font-bold"><%= post.likes_counter %> </p> <i class="fa-regular fa-comment fa-xs"></i></i>           
             <% end %>
         </div>
         </div>
-       <% end %>
+       </div>
     <% end %>
 </div>
 <%== pagy_nav(@pagy) if @pagy.pages > 1 %>

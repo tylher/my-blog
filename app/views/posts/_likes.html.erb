@@ -1,0 +1,8 @@
+ <%= turbo_frame_tag dom_id(post, :likes), class: "flex items-center gap-1 " do %>
+    <%= button_to likes_path(post_id: post.id), method: :post do %>
+                 <i class="fa-regular fa-heart fa-xs"></i>           
+            <% end %>
+
+    <p class="text-xs font-bold"><%= post.likes_counter %> </p>
+ <% end %>
+ 
