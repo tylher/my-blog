@@ -3,6 +3,7 @@ class Like < ApplicationRecord
   belongs_to :post, class_name: "Post", foreign_key: "post_id"
 
   after_create :update_like_count
+  after_destroy :update_like_count
 
   def update_like_count
     new_count = post.likes.count

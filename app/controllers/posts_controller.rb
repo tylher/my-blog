@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
-
   def show
     @post = Post.find_by(title: params[:title])
   end

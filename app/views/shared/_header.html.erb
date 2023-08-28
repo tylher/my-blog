@@ -9,6 +9,6 @@
         <%= link_to "Sign up", new_user_registration_path, class: "border-[2px] border-blue-300 px-4 py-1 rounded-full" %>
     </nav>
     <% else %>
-    <%= link_to "Logout", destroy_user_session_path, class: "border-[2px] border-blue-300 px-4 py-1 rounded-full", method: :delete %>
+    <%= link_to "Logout", destroy_user_session_path, class: "border-[2px] border-blue-300 px-4 py-1 rounded-full", data: { turbo_method: :delete } %>
     <% end %>
 </div>

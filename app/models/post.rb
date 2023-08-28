@@ -30,4 +30,16 @@ class Post < ApplicationRecord
   def featured
     order(created_at: :desc).order(likes_counter: :desc).first(5)
   end
+
+  def liked?(user)
+    likes.where(author: user).any?
+  end
+
+  def like(user)
+    likes.where(author: user).first_or_create
+  end
+
+  def unlike(user)
+    likes.where(author: user).destroy_all
+  end
 end

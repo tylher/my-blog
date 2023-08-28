@@ -1,17 +1,19 @@
 class LikesController < ApplicationController
   include ActionView::RecordIdentifier
-  respond_to :turbo_stream
 
   def create
-    @like = Like.new
-    @like.author_id = current_user.id
     @post = Post.find(params[:post_id])
-    @like.post_id = params[:post_id]
-    if @like.save
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(dom_id(@post, :likes), partial: "posts/likes", locals: { post: @post })
-        end
+
+    if !@post.liked?(current_user)
+      @post.like(current_user)
+    else
+      @post.unlike(current_user)
+    end
+    @updated_post = Post.find(params[:post_id])
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(dom_id(@updated_post, :likes), partial: "posts/likes", locals: { post: @updated_post })
       end
     end
   end
