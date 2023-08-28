@@ -3,7 +3,7 @@ class LikesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-
+    puts user_signed_in? == false
     if !@post.liked?(current_user)
       @post.like(current_user)
     else

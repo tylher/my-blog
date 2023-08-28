@@ -1,0 +1,10 @@
+<div class="bg-white rounded-md w-full shadow-md min-h-[100px] px-5 py-3">
+    <h2 class="font-bold text-2xl"> COMMENTS</h2>
+    
+    <%= turbo_frame_tag "comments" do %>
+        <% post.comments.each do |comment| %>
+            <%= render partial: "comments/comment", locals: { comment: comment } %> 
+        <% end %>
+    <% end %>
+
+</div>

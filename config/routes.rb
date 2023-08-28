@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, defaults: { format: :html }
   get "/login", to: "login#form"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # resources :users, only: %i[index show] do

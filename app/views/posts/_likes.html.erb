@@ -1,4 +1,4 @@
- <%= turbo_frame_tag dom_id(post, :likes), class: "flex items-center gap-1 " do %>
+ <%= turbo_frame_tag dom_id(post, :likes), class: "flex items-center gap-1 ", target: "_top" do %>
     <%= button_to likes_path(post_id: post.id), method: :post do %>
                   <% if post.liked?(current_user) %>
                   <i class="fa-solid fa-heart fa-beat fa-xs" style="color: #f21818;--fa-beat-scale: 2.0; --fa-animation-iteration-count: 1; --fa-animation-duration: 400ms;"></i> 

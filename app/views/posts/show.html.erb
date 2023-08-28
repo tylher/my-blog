@@ -3,7 +3,7 @@
 
     <div>
         <div class="p-auto w-[100%] ">
-            <img src="<%= url_for(@post.featured_image)%>">
+            <img src="<%= url_for(@post.featured_image) %>">
         </div>
         <div class="flex gap-5 text-sm font-bold">
             <p>comments: <%= @post.comments_counter %></p>
@@ -12,21 +12,11 @@
     </div>
 
     <p class=""><%= @post.text %></p>
-    <div class="bg-white rounded-md w-full shadow-md min-h-[100px] px-5 py-3">
-    <h2 class="font-bold text-2xl"> COMMENTS</h2>
-        <% @post.comments.each do |comment| %>
-        <p><%= comment.author.name %>: <%= comment.text %></p>
-   <% end %>
-    </div>
-    
 
-
-   <div id="new_comment" class="flex flex-col gap-3 ">
-        <h2 class="text-2xl font-semibold"> Comment On This Post</h2>
-        <%= form_with model: @comment, path: comments_path, method: :post, local: true do |f| %>
-               <%= f.text_area :text, class:"rounded-md h-[150px] w-3/5 bg-gray-200 border-none focus:bg-white font-medium px-4", placeholder: "Add a comment here" %>
-        <% end %>
-   </div>
+  
+        <%= render partial: "comments/list", locals: { post: @post } %>
+   
+   <%= render partial: "comments/new", locals: { comment: @comment, post: @post } %>
    
     
 </div>
