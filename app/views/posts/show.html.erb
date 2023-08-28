@@ -5,10 +5,12 @@
         <div class="p-auto w-[100%] ">
             <img src="<%= url_for(@post.featured_image) %>">
         </div>
+        <%= turbo_frame_tag dom_id(@post, :counters) do %>
         <div class="flex gap-5 text-sm font-bold">
             <p>comments: <%= @post.comments_counter %></p>
             <p>likes: <%= @post.likes_counter %></p>
         </div>
+        <% end %>
     </div>
 
     <p class=""><%= @post.text %></p>

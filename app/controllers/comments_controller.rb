@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     @comment.post_id = params[:post_id]
 
     if @comment.save
+      @updated_post = @comment.post
       respond_to do |format|
         format.html { flash[:success] = " Comments created successfully" }
         format.turbo_stream

@@ -1,3 +1,11 @@
 <%= turbo_stream.append "comments" do %>
     <%= render partial: "comments/comment", locals: { comment: @comment } %>
 <% end %>
+
+<%= turbo_stream.replace dom_id(@updated_post, :counters) do %>
+     <div class="flex gap-5 text-sm font-bold">
+            <p>comments: <%= @updated_post.comments_counter %></p>
+            <p>likes: <%= @updated_post.likes_counter %></p>
+        </div>
+<% end %>
+
