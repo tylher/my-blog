@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post "/comments", to: "comments#create", as: :comments
   post "/likes", to: "likes#create", as: :likes
 
-  get "/posts/:title", to: "posts#show", :as => :post
+  get "/posts/:id", to: "posts#show", :as => :post
 
   root "home#index"
   # Defines the root path route ("/")

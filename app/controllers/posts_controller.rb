@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def show
-    @post = Post.find_by(title: params[:title])
+    @post = Post.find(params[:id])
   end
 
   def index
