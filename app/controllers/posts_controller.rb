@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.author_id = 1
+    @post.author = current_user
     respond_to do |format|
       format.html do
         if @post.save
