@@ -2,6 +2,10 @@
 
 The Blog app is a fully functional web app that will show the list of posts and empower readers to interact with them by adding comments and liking posts.
 
+## Live Demo
+
+View live demo [here](https://blog-app-uknu.onrender.com/)
+
 ## Built With
 
 - Technologies used:
